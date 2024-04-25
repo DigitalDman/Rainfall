@@ -38,9 +38,9 @@ player = Player
 spritesheet = Spritesheet('spritesheet.png')
 
 spritesheet2 = Spritesheet('spritesheet(2).png')
-map = TileMap('JustQuit_World1_TileLayer1.csv', spritesheet2 )
+map = TileMap('placeholder.csv', spritesheet2 )
 
-house = pygame.image.load('JustQuit_World1.png').convert()
+house = pygame.image.load('placeholder.png').convert()
 
 Title_Screen = True
 title = TitleScreen
@@ -56,9 +56,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    #player.update(dt, map.tiles)
+    player.update(dt, map.tiles)
     
-    #canvas.blit(player.current_image,(300 , 300))
+    canvas.blit(player.current_image,(300 , 300))
     if Title_Screen:
         canvas.blit(title.current_image, (0,0))
     window.blit(canvas, (0,0))
