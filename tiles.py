@@ -45,52 +45,8 @@ class TileMap():
             for tile in row:
                 if tile == '35':
                     self.start_x, self.start_y = x * self.tile_size, y * self.tile_size
-                elif tile == '20':
-                    tiles.append(Tile('grass.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '19':
-                    tiles.append(Tile('dirt.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '4':
-                    tiles.append(Tile('wall.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '17':
-                    tiles.append(Tile('stairleft.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '23':
-                    tiles.append(Tile('stairdownright.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '22':
-                    tiles.append(Tile('stairdownleft.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '18':
-                    tiles.append(Tile('stairright.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '5':
-                    tiles.append(Tile('pillarcenter.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '2':
-                    tiles.append(Tile('pillartop.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '0':
-                    tiles.append(Tile('pillarbase.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '1':
-                    tiles.append(Tile('pillartopandbottom.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '3':
-                    tiles.append(Tile('walltop.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '6':
-                    tiles.append(Tile('castledoor.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '7':
-                    tiles.append(Tile('wallcornerright.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '33':
-                    tiles.append(Tile('bossdoorunlocked.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '8':
-                    tiles.append(Tile('wallbothcorners.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '9':
-                    tiles.append(Tile('wallleftcorner.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '15':
-                    tiles.append(Tile('chestopen.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '16':
-                    tiles.append(Tile('chestclosed.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '27':
-                    tiles.append(Tile('bossdoor.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '24':
-                    tiles.append(Tile('bosskey.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '25':
-                    tiles.append(Tile('key.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
-                elif tile == '28':
-                    tiles.append(Tile('bgwall.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                elif tile =='3':
+                    tiles.append(Tile('background.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
                     # Move to next tile in current row
                 x += 1
 

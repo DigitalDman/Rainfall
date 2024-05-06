@@ -4,6 +4,7 @@ from spritesheet import Spritesheet
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         self.LEFT_KEY, self.RIGHT_KEY, self.FACING_LEFT = False, False, False
+        self.FACING_RIGHT = False
         self.DOWN, self.FACING_DOWN = False, False
         self.UP, self.FACING_UP = False, False
         self.load_frames()
@@ -12,26 +13,18 @@ class Player(pygame.sprite.Sprite):
         self.current_frame = 0
         self.last_updated = 0
         self.velocity = 0
-        #VelocityY is for flight
-        self.velocityY = 2
         ########################
-        #Gravity Boots
-        self.Gravity_Boots = False
-        self.low_gravity = 0.25
-        self.high_gravity = 50
-
-        #################
         self.state = 'idle'
         self.current_image = self.idle_frames_left[0]
         self.left_border, self.right_border = 250, 1150
-        self.ground_y = 224
+        self.ground_y = 0
         self.box = pygame.Rect(self.rect.x, self.rect.y, self.rect.w * 2, self.rect.h)
         self.box.center = self.rect.center
         self.passed = False
-        self.gravity = .1  #base gravity .35 (Boot gravity: .25)
+        self.speed = .00000000000000000000000000000000000000000000000000000000000000000000001  #base gravity .35 (Boot gravity: .25)
         self.friction = -.12  
-        self.position, self.velocity = pygame.math.Vector2(2720,2150), pygame.math.Vector2(0,0) #Normal pos = 665, 3000
-        self.acceleration = pygame.math.Vector2(0,self.gravity)
+        self.position, self.velocity = pygame.math.Vector2(300,300), pygame.math.Vector2(0,0) #Normal pos = 665, 3000
+        self.acceleration = pygame.math.Vector2(0,self.speed)
 
 
     def draw(self, display):
@@ -77,7 +70,7 @@ class Player(pygame.sprite.Sprite):
         elif self.velocity < 0:
             self.state = 'moving left'
 
-    def animate(self):
+    def animate(self): #This code does not currently do anything. adding dt & map.tiles to player.update() made this block not work
         now = pygame.time.get_ticks()
         if self.state == ' idle':
             if now - self.last_updated > 200:
@@ -85,8 +78,6 @@ class Player(pygame.sprite.Sprite):
                 self.current_frame = (self.current_frame + 1) % len(self.idle_frames_left)
                 if self.FACING_LEFT:
                     self.current_image = self.idle_frames_left[self.current_frame]
-                elif not self.FACING_LEFT:
-                    self.current_image = self.idle_frames_right[self.current_frame]
         else:
             if now - self.last_updated > 100:
                 self.last_updated = now
@@ -103,21 +94,18 @@ class Player(pygame.sprite.Sprite):
         #pygame.image.load('MY_IMAGE_NAME.png').convert()
         self.idle_frames_left = [my_spritesheet.parse_sprite("SlimeL1.png"),
                                  my_spritesheet.parse_sprite("SlimeL1.png")]
-        self.walking_frames_left = [my_spritesheet.parse_sprite("SlimeL1.png"), my_spritesheet.parse_sprite("SlimeL2.png")]
-        self.idle_frames_left = [my_spritesheet.parse_sprite("SlimeL1.png"),
-                                 my_spritesheet.parse_sprite("SlimeL1.png")]
-        self.walking_frames_left = [my_spritesheet.parse_sprite("SlimeL1.png"), my_spritesheet.parse_sprite("SlimeL2.png")]
-        self.idle_frames_right = []
-        for frame in self.idle_frames_left:
-            self.idle_frames_right.append( pygame.transform.flip(frame,True, False) )
-        self.walking_frames_right = []
-        for frame in self.walking_frames_left:
-            self.walking_frames_right.append(pygame.transform.flip(frame, True, False))
+        self.walking_frames_left = [my_spritesheet.parse_sprite("SlimeL1.png"),
+                                     my_spritesheet.parse_sprite("SlimeL2.png")]
+        self.walking_frames_right = [my_spritesheet.parse_sprite("SlimeR1.png"),
+                                     my_spritesheet.parse_sprite("SlimeR2.png")]
+        self.walking_frames_up = [my_spritesheet.parse_sprite("SlimeU1.png"),
+                                     my_spritesheet.parse_sprite("SlimeU2.png")]
+        self.walking_frames_down = [my_spritesheet.parse_sprite("SlimeD1.png"),
+                                     my_spritesheet.parse_sprite("SlimeD2.png")]
 
 
-
-    Intangability = False
-    if Intangability == False:
+    Map_Made = False
+    if Map_Made == False:
         def draw(self, display):
             
             display.blit(self.image, (self.rect.x, self.rect.y))
@@ -132,9 +120,9 @@ class Player(pygame.sprite.Sprite):
         def horizontal_movement(self,dt):
             self.acceleration.x = 0
             if self.LEFT_KEY:
-                self.acceleration.x -= .3
+                self.acceleration.x -= .09
             elif self.RIGHT_KEY:
-                self.acceleration.x += .3
+                self.acceleration.x += .09
             self.acceleration.x += self.velocity.x * self.friction
             self.velocity.x += self.acceleration.x * dt
             self.limit_velocity(4)
@@ -142,20 +130,20 @@ class Player(pygame.sprite.Sprite):
             self.rect.x = self.position.x
 
         def vertical_movement(self,dt):
+            self.acceleration.y = 0
+            if self.UP:
+                self.acceleration.y -= .09
+            elif self.DOWN:
+                self.acceleration.y += .09
+            self.acceleration.y += self.velocity.y * self.friction
             self.velocity.y += self.acceleration.y * dt
-            if self.velocity.y > 7: self.velocity.y = 7
+            self.limit_velocity(4)
             self.position.y += self.velocity.y * dt + (self.acceleration.y * .5) * (dt * dt)
-            self.rect.bottom = self.position.y
-
+            self.rect.y = self.position.y
+        
         def limit_velocity(self, max_vel):
             self.velocity.x = max(-max_vel, min(self.velocity.x, max_vel))
             if abs(self.velocity.x) < .01: self.velocity.x = 0
-
-        def jump(self):
-            if self.on_ground:
-                self.is_jumping = True
-                self.velocity.y -= 8
-                self.on_ground = False
 
         def get_hits(self, tiles):
             hits = []
@@ -175,17 +163,11 @@ class Player(pygame.sprite.Sprite):
                     self.rect.x = self.position.x
 
         def checkCollisionsy(self, tiles):
-            self.on_ground = False
-            self.rect.bottom += 1
             collisions = self.get_hits(tiles)
             for tile in collisions:
-                if self.velocity.y > 0:  # Hit tile from the top
-                    self.on_ground = True
-                    self.is_jumping = False
-                    self.velocity.y = 0
-                    self.position.y = tile.rect.top
-                    self.rect.bottom = self.position.y
-                elif self.velocity.y < 0:  # Hit tile from the bottom
-                    self.velocity.y = 0
-                    self.position.y = tile.rect.bottom + self.rect.h
-                    self.rect.bottom = self.position.y
+                if self.velocity.y > 0:  # Hit tile moving Up
+                    self.position.y = tile.rect.top - self.rect.h
+                    self.rect.y = self.position.y
+                elif self.velocity.y < 0:  # Hit tile moving Down
+                    self.position.y = tile.rect.bottom
+                    self.rect.y = self.position.y

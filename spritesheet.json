@@ -1,6 +1,6 @@
 {
 	"frames": {
-		"SlimeD1.png": {
+		"DashD.png": {
 			"frame": {
 				"x": 1,
 				"y": 1,
@@ -20,7 +20,7 @@
 				"h": 10
 			}
 		},
-		"SlimeD2.png": {
+		"DashL.png": {
 			"frame": {
 				"x": 21,
 				"y": 1,
@@ -40,7 +40,7 @@
 				"h": 10
 			}
 		},
-		"SlimeL1.png": {
+		"DashR.png": {
 			"frame": {
 				"x": 41,
 				"y": 1,
@@ -60,7 +60,7 @@
 				"h": 10
 			}
 		},
-		"SlimeL2.png": {
+		"DashU.png": {
 			"frame": {
 				"x": 61,
 				"y": 1,
@@ -80,10 +80,110 @@
 				"h": 10
 			}
 		},
-		"SlimeR1.png": {
+		"LoadingScreen.png": {
 			"frame": {
 				"x": 81,
 				"y": 1,
+				"w": 800,
+				"h": 600
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 800,
+				"h": 600
+			},
+			"sourceSize": {
+				"w": 800,
+				"h": 600
+			}
+		},
+		"SlimeD1.png": {
+			"frame": {
+				"x": 883,
+				"y": 1,
+				"w": 18,
+				"h": 10
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 18,
+				"h": 10
+			},
+			"sourceSize": {
+				"w": 18,
+				"h": 10
+			}
+		},
+		"SlimeD2.png": {
+			"frame": {
+				"x": 903,
+				"y": 1,
+				"w": 18,
+				"h": 10
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 18,
+				"h": 10
+			},
+			"sourceSize": {
+				"w": 18,
+				"h": 10
+			}
+		},
+		"SlimeL1.png": {
+			"frame": {
+				"x": 923,
+				"y": 1,
+				"w": 18,
+				"h": 10
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 18,
+				"h": 10
+			},
+			"sourceSize": {
+				"w": 18,
+				"h": 10
+			}
+		},
+		"SlimeL2.png": {
+			"frame": {
+				"x": 1,
+				"y": 13,
+				"w": 18,
+				"h": 10
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 18,
+				"h": 10
+			},
+			"sourceSize": {
+				"w": 18,
+				"h": 10
+			}
+		},
+		"SlimeR1.png": {
+			"frame": {
+				"x": 21,
+				"y": 13,
 				"w": 18,
 				"h": 10
 			},
@@ -102,8 +202,8 @@
 		},
 		"SlimeR2.png": {
 			"frame": {
-				"x": 101,
-				"y": 1,
+				"x": 41,
+				"y": 13,
 				"w": 18,
 				"h": 10
 			},
@@ -122,8 +222,8 @@
 		},
 		"SlimeU1.png": {
 			"frame": {
-				"x": 121,
-				"y": 1,
+				"x": 61,
+				"y": 13,
 				"w": 18,
 				"h": 10
 			},
@@ -142,8 +242,8 @@
 		},
 		"SlimeU2.png": {
 			"frame": {
-				"x": 141,
-				"y": 1,
+				"x": 883,
+				"y": 13,
 				"w": 18,
 				"h": 10
 			},
@@ -162,48 +262,48 @@
 		},
 		"Title1.png": {
 			"frame": {
-				"x": 1,
-				"y": 13,
-				"w": 160,
-				"h": 120
+				"x": 943,
+				"y": 1,
+				"w": 520,
+				"h": 390
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 160,
-				"h": 120
+				"w": 520,
+				"h": 390
 			},
 			"sourceSize": {
-				"w": 160,
-				"h": 120
+				"w": 520,
+				"h": 390
 			}
 		},
 		"Title2.png": {
 			"frame": {
-				"x": 163,
-				"y": 1,
-				"w": 160,
-				"h": 120
+				"x": 883,
+				"y": 393,
+				"w": 520,
+				"h": 390
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 160,
-				"h": 120
+				"w": 520,
+				"h": 390
 			},
 			"sourceSize": {
-				"w": 160,
-				"h": 120
+				"w": 520,
+				"h": 390
 			}
 		},
 		"background.png": {
 			"frame": {
-				"x": 325,
-				"y": 1,
+				"x": 1,
+				"y": 393,
 				"w": 32,
 				"h": 32
 			},
@@ -227,8 +327,8 @@
 		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 358,
-			"h": 134
+			"w": 1464,
+			"h": 784
 		},
 		"scale": "1"
 	}
